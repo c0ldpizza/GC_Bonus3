@@ -8,37 +8,27 @@ namespace Bonus3
 {
     class Program
     {
-        public static int number = 50;
+        //variables
+        public static int numberTries = 0;
+        public static string response;
 
         static void Main(string[] args)
         {
             //randomly generate an integer from 1 to 100
+            Random rnd = new Random();
+            int number = rnd.Next(1, 100);
 
-            int numberTries = 1;
-            string response;
-            
             do
             {
-                if (numberTries > 1)
-                {
-                    response = "again";
-                }
-                else
-                {
-                    response = "the number";
-                }
-
-                numberTries++;
-
-                Console.WriteLine("Guess {0}", response);
-
-
-            } while (CheckGuess(GetNumberInRange(1, 100)));
+                GetTries();
+                    
+            } while (CheckGuess(GetNumberInRange(1, 100), number));
             
 
         }
 
-        public static bool CheckGuess(int guess)
+        //compares user's guess to number
+        public static bool CheckGuess(int guess, int number)
         {
             if (guess > number)
             {
@@ -69,16 +59,25 @@ namespace Bonus3
             else
             {
                 Console.WriteLine("Great job!");
+                Console.WriteLine("It took you {0} tries.", numberTries);
                 return false;
             }
         }
 
-        public static void HowClose(int guess)
+        public static void GetTries()
         {
-            if (Math.Abs(guess - number) < 10)
-            {
+            numberTries++;
 
+            if (numberTries > 1)
+            {
+                response = "again";
             }
+            else
+            {
+                response = "the number";
+            }
+
+            Console.WriteLine("Guess {0}", response);
         }
 
         public static int GetValidInput()
@@ -91,6 +90,7 @@ namespace Bonus3
 
             return input;
         }
+
         //Validates that integer is within a given range
         public static int GetNumberInRange(int min, int max)
         {
