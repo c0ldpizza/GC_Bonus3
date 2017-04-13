@@ -97,6 +97,8 @@ namespace Bonus3
             }
             else
             {
+                Console.Clear();
+                numberTries = 0;
                 return true;
             }
         }
