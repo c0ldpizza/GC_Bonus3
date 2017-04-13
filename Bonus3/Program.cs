@@ -14,16 +14,20 @@ namespace Bonus3
 
         static void Main(string[] args)
         {
-            //randomly generate an integer from 1 to 100
-            Random rnd = new Random();
-            int number = rnd.Next(1, 100);
-
             do
             {
-                GetTries();
-                    
-            } while (CheckGuess(GetNumberInRange(1, 100), number));
-            
+
+                //randomly generate an integer from 1 to 100
+                Random rnd = new Random();
+                int number = rnd.Next(1, 100);
+
+                do
+                {
+                    GetTries();
+
+                } while (CheckGuess(GetNumberInRange(1, 100), number));
+  
+            } while (PlayAgain());
 
         }
 
@@ -78,6 +82,20 @@ namespace Bonus3
             }
 
             Console.WriteLine("Guess {0}", response);
+        }
+
+        public static bool PlayAgain()
+        {
+            Console.WriteLine("Do you want to play again? (y/n)");
+
+            string input = Console.ReadLine();
+
+            if (input.ToLower() == "n")
+                return false;
+            else
+            {
+                return true;
+            }
         }
 
         public static int GetValidInput()
