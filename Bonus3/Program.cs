@@ -91,7 +91,10 @@ namespace Bonus3
             string input = Console.ReadLine();
 
             if (input.ToLower() == "n")
+            {
+                Console.WriteLine("Goodbye!");
                 return false;
+            }
             else
             {
                 return true;
